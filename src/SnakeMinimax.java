@@ -3,7 +3,7 @@ import java.util.Arrays;
 
 public class SnakeMinimax {
     static ArrayList<Character> coup_possible = new ArrayList<>(Arrays.asList('D', 'U', 'R', 'L'));
-    static int profondeur = 13;
+    static int profondeur = 11;
     //profondeur de recherche
 
     public static void moveIA() {
@@ -85,10 +85,7 @@ public class SnakeMinimax {
 
     }
     private static boolean isAppleEaten() {
-        if((GamePanel.x[0]==GamePanel.appleX) && (GamePanel.y[0]==GamePanel.appleY)) {
-            return true;
-        }
-        return false;
+        return (GamePanel.x[0] == GamePanel.appleX) && (GamePanel.y[0] == GamePanel.appleY);
     }
     public static boolean isGameOver() {
         //checks if head collides with body

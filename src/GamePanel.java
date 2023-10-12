@@ -5,7 +5,6 @@ import javax.swing.*;
 
 import javax.swing.JPanel;
 
-@SuppressWarnings("serial")
 public class GamePanel extends JPanel implements ActionListener {
 
 
@@ -20,8 +19,8 @@ public class GamePanel extends JPanel implements ActionListener {
     static final int GAME_UNITS = (SCREEN_WIDTH*SCREEN_HEIGHT)/(UNIT_SIZE*UNIT_SIZE);
     static final int DELAY = 10;
     //temps entre chaque coup de l'IA
-    final static int x[] = new int[GAME_UNITS+2];
-    final static int y[] = new int[GAME_UNITS+2];
+    final static int[] x = new int[GAME_UNITS+2];
+    final static int[] y = new int[GAME_UNITS+2];
     static int bodyParts = 5;
     static int applesEaten = 0;
     static int appleX;
@@ -66,10 +65,10 @@ public class GamePanel extends JPanel implements ActionListener {
         else if(running) {
             //quadrillage
             for(int i=1;i<SCREEN_WIDTH/UNIT_SIZE;i++) {
-                g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_WIDTH);
+                g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
             }
             for(int i=1;i<SCREEN_HEIGHT/UNIT_SIZE;i++) {
-                g.drawLine(0, i*UNIT_SIZE, SCREEN_HEIGHT, i*UNIT_SIZE);
+                g.drawLine(0, i*UNIT_SIZE, SCREEN_WIDTH, i*UNIT_SIZE);
             }
             //pomme
             g.setColor(Color.red);
@@ -158,6 +157,7 @@ public class GamePanel extends JPanel implements ActionListener {
         for (int i = bodyParts - 1; i > 0; i--) {
             if ((x[0] == x[i]) && (y[0] == y[i])) {
                 running = false;
+                break;
             }
         }
         // Vérifier si la tête entre en collision avec les bords
