@@ -9,16 +9,16 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel implements ActionListener {
 
 
-    static final int SCREEN_WIDTH_TAILLE = 6;
+    static final int SCREEN_WIDTH_TAILLE = 10;
     //taille de l'écran
-    static final int SCREEN_HEIGHT_TAILLE = 6;
+    static final int SCREEN_HEIGHT_TAILLE = 10;
     //taille de l'écran
-    final static int UNIT_SIZE = 75;
+    final static int UNIT_SIZE = 55;
     //taille d'une case
     static final int SCREEN_WIDTH = SCREEN_WIDTH_TAILLE*UNIT_SIZE;
     static final int SCREEN_HEIGHT = SCREEN_HEIGHT_TAILLE*UNIT_SIZE;
     static final int GAME_UNITS = (SCREEN_WIDTH*SCREEN_HEIGHT)/(UNIT_SIZE*UNIT_SIZE);
-    static final int DELAY = 100;
+    static final int DELAY = 10;
     //temps entre chaque coup de l'IA
     final static int x[] = new int[GAME_UNITS+2];
     final static int y[] = new int[GAME_UNITS+2];
