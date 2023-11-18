@@ -8,17 +8,20 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel implements ActionListener {
 
 
-    static final int SCREEN_WIDTH_TAILLE = 10;
+    static final int SCREEN_WIDTH_TAILLE = 7;
     //taille de l'écran
-    static final int SCREEN_HEIGHT_TAILLE = 10;
+    static final int SCREEN_HEIGHT_TAILLE = 6;
     //taille de l'écran
-    final static int UNIT_SIZE = 55;
+    final static int UNIT_SIZE = 80;
     //taille d'une case
+    static final int DELAY = 20;
+    //temps entre chaque coup de l'IA
+    //taille d'une case
+    static final int PROFONDEUR = 10;
+    //temps entre chaque coup de l'IA
     static final int SCREEN_WIDTH = SCREEN_WIDTH_TAILLE*UNIT_SIZE;
     static final int SCREEN_HEIGHT = SCREEN_HEIGHT_TAILLE*UNIT_SIZE;
     static final int GAME_UNITS = (SCREEN_WIDTH*SCREEN_HEIGHT)/(UNIT_SIZE*UNIT_SIZE);
-    static final int DELAY = 10;
-    //temps entre chaque coup de l'IA
     final static int[] x = new int[GAME_UNITS+2];
     final static int[] y = new int[GAME_UNITS+2];
     static int bodyParts = 5;
@@ -144,7 +147,7 @@ public class GamePanel extends JPanel implements ActionListener {
     }
     public static void checkApple(boolean newApple) {
         if((x[0]==appleX) && (y[0]==appleY)) {
-            bodyParts++;
+            grandir();
             if (newApple) {
                 applesEaten++;
                 newApple();
@@ -152,6 +155,11 @@ public class GamePanel extends JPanel implements ActionListener {
         }
 
     }
+
+    public static void grandir() {
+        bodyParts++;
+    }
+
     public void checkCollisions() {
         // Vérifier si la tête entre en collision avec le corps
         for (int i = bodyParts - 1; i > 0; i--) {
@@ -184,7 +192,7 @@ public class GamePanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(running) {
             //System.out.println("test1");
-            SnakeMinimax.moveIA();
+            SnakeMinimax.moveIA(PROFONDEUR);
             move();
             checkApple(true);
             checkCollisions();
