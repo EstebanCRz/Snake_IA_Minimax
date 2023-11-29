@@ -1,4 +1,4 @@
-package Panel;
+package App;
 
 import Game.Component.Apple;
 import Game.Component.Snake.Snake;
@@ -11,26 +11,20 @@ import javax.swing.*;
 
 import javax.swing.JPanel;
 
-public class GamePanel extends JPanel implements ActionListener {
+public class Panel extends JPanel {
 
-    static final int SCREEN_WIDTH_TAILLE = 7;
-    //taille de l'écran
-    static final int SCREEN_HEIGHT_TAILLE = 7;
-    //taille de l'écran
-    final static int UNIT_SIZE = 80;
-    //taille d'une case
-    static final int DELAY = 0;
-    //temps entre chaque coup de l'IA
+    static final int SCREEN_WIDTH_TAILLE = 7; //taille de l'écran
+    static final int SCREEN_HEIGHT_TAILLE = 7; //taille de l'écran
+    final static int UNIT_SIZE = 80; //taille d'une case
+    static final int DELAY = 0; //temps entre chaque coup de l'IA
     static final int SCREEN_WIDTH = SCREEN_WIDTH_TAILLE*UNIT_SIZE;
     static final int SCREEN_HEIGHT = SCREEN_HEIGHT_TAILLE*UNIT_SIZE;
     static final int GAME_UNITS = (SCREEN_WIDTH_TAILLE*SCREEN_HEIGHT_TAILLE);
-    boolean running = false;
-    Timer timer;
-    static Random random;
+    private boolean running = false;
+    private Timer timer;
 
 
-    public GamePanel() {
-        random = new Random();
+    public Panel() {
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBackground(Color.black);
         this.setFocusable(true);

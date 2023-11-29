@@ -1,8 +1,13 @@
-package Game;
+package Game.Component;
+import java.util.Scanner;
 
 public class Apple {
     static int appleX;
     static int appleY;
+    public Apple(int appleX, int appleY){
+        this.appleX = appleX;
+        this.appleY = appleY;
+    }
 
     public static void newApple() {
         boolean onSnake = true;

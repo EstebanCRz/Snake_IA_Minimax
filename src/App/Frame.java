@@ -1,13 +1,11 @@
-package Frame;
-
-import Panel.GamePanel;
+package App;
 
 import javax.swing.JFrame;
 
-public class GameFrame extends JFrame {
+public class Frame extends JFrame {
 
-    public GameFrame(){
-        this.add(new GamePanel());
+    public Frame(){
+        this.add(new Panel());
         this.setTitle("projetSnake");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);

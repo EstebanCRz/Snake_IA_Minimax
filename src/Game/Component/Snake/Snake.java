@@ -1,6 +1,10 @@
-package Game;
+package Game.Component.Snake;
 
 public class Snake {
+    private Body[] snake;
+    public Snake(Body[] snake){
+        this.snake = snake;
+    }
     final static int[] Co_x = new int[GAME_UNITS+2];
     final static int[] Co_y = new int[GAME_UNITS+2];
     static int bodyParts = 5;
