@@ -19,7 +19,7 @@ public class GamePanel extends JPanel implements ActionListener {
     //temps entre chaque coup de l'IA
     static final int SCREEN_WIDTH = SCREEN_WIDTH_TAILLE*UNIT_SIZE;
     static final int SCREEN_HEIGHT = SCREEN_HEIGHT_TAILLE*UNIT_SIZE;
-    static final int GAME_UNITS = (SCREEN_WIDTH*SCREEN_HEIGHT)/(UNIT_SIZE*UNIT_SIZE);
+    static final int GAME_UNITS = (SCREEN_WIDTH_TAILLE*SCREEN_HEIGHT_TAILLE);
     boolean running = false;
     Timer timer;
     static Random random;
@@ -31,7 +31,6 @@ public class GamePanel extends JPanel implements ActionListener {
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBackground(Color.black);
         this.setFocusable(true);
-        //this.addKeyListener(new MyKeyAdapter());
         startGame();
     }
     public void startGame() {

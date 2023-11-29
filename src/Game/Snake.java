@@ -1,4 +1,4 @@
-package Snake;
+package Game;
 
 public class Snake {
     final static int[] Co_x = new int[GAME_UNITS+2];

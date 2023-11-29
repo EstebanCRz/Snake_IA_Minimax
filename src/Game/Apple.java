@@ -1,4 +1,4 @@
-package Snake;
+package Game;
 
 public class Apple {
     static int appleX;
