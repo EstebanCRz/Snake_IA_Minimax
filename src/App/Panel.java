@@ -1,5 +1,9 @@
 package Panel;
 
+import Game.Component.Apple;
+import Game.Component.Snake.Snake;
+import Game.Game;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
@@ -25,7 +29,6 @@ public class GamePanel extends JPanel implements ActionListener {
     static Random random;
 
 
-
     public GamePanel() {
         random = new Random();
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
@@ -33,35 +36,36 @@ public class GamePanel extends JPanel implements ActionListener {
         this.setFocusable(true);
         startGame();
     }
-    public void startGame() {
-        appleX = (SCREEN_WIDTH_TAILLE/2)*UNIT_SIZE;
-        appleY = (SCREEN_HEIGHT_TAILLE/2)*UNIT_SIZE;
-        running = true;
-        timer = new Timer(DELAY, this);
-        timer.start();
-
-        // Initialisation de la position du serpent
-        for (int i = 0; i < bodyParts; i++) {
-            x[i] = (SCREEN_WIDTH_TAILLE / 2 - (i+3)) * UNIT_SIZE;
-            y[i] = (SCREEN_HEIGHT_TAILLE / 2) * UNIT_SIZE;
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(running) {
+            //System.out.println("test1");
+            SnakeMinimax.moveIA(DEEPTH);
+            move();
+            checkApple(true);
+            checkCollisions();
         }
+        repaint();
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         draw(g);
     }
+
     public void gameOver(Graphics g) {
         g.setColor(Color.red);
         g.setFont(new Font("Ink Free", Font.BOLD, SCREEN_WIDTH/7));
         FontMetrics metrics = getFontMetrics(g.getFont());
         g.drawString("Game Over", (SCREEN_WIDTH - metrics.stringWidth("Game Over"))/2, SCREEN_HEIGHT/2);
     }
+
     public void win(Graphics g) {
         g.setColor(Color.red);
         g.setFont(new Font("Ink Free", Font.BOLD, SCREEN_WIDTH/7));
         FontMetrics metrics = getFontMetrics(g.getFont());
         g.drawString("You Win!!!!", (SCREEN_WIDTH - metrics.stringWidth("You Win!!!!"))/2, SCREEN_HEIGHT/2);
     }
+
     public void draw(Graphics g) {
         //if win
         if(GAME_UNITS == (bodyParts+1)){
@@ -87,8 +91,8 @@ public class GamePanel extends JPanel implements ActionListener {
             g.fillRect(x[0], y[0], UNIT_SIZE, UNIT_SIZE);
 
             //corps
-            for(int i=1; i<bodyParts; i++) {
-                // Calculer les composantes RVB en fonction de la position dans le serpent
+            for(int i=1; i<bodyParts; i++) { // TODO : faire une fonction de renvois
+                 // Calculer les composantes RVB en fonction de la position dans le serpent
                 int red = (i * 255) / bodyParts;
                 int green = 255 - ((i * 255) / bodyParts);
                 int blue = 0;
@@ -101,24 +105,24 @@ public class GamePanel extends JPanel implements ActionListener {
             g.setColor(Color.blue);
             g.setFont(new Font("Ink Free", Font.BOLD, 45));
             FontMetrics metrics = getFontMetrics(g.getFont());
-            g.drawString("Score: "+applesEaten, (SCREEN_WIDTH - metrics.stringWidth("Score: "+applesEaten))/2, g.getFont().getSize());
+            g.drawString("Score: " + applesEaten, (SCREEN_WIDTH - metrics.stringWidth("Score: "+applesEaten))/2, g.getFont().getSize());
         }
         else {
             gameOver(g);
         }
 
-    }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(running) {
-            //System.out.println("test1");
-            SnakeMinimax.moveIA(PROFONDEUR);
-            move();
-            checkApple(true);
-            checkCollisions();
+    public void startGame() {
+        Apple apple = new Apple(2, 2);
+        Snake snake = new Snake();
+        running = true;
+        timer = new Timer(DELAY, this);
+        timer.start();
+
+        // Initialisation de la position du serpent
+        for (int i = 0; i < bodyParts; i++) {
+            x[i] = (SCREEN_WIDTH_TAILLE / 2 - (i+3)) * UNIT_SIZE;
+            y[i] = (SCREEN_HEIGHT_TAILLE / 2) * UNIT_SIZE;
         }
-        repaint();
-
     }
 }
